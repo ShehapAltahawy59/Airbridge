@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Adium Concept</title>
+  <link rel="stylesheet" href="./css/chat_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.4.2.js" ></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-replace.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro_italic_600.font.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro_italic_400.font.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro_400.font.js"></script>
+<style>
+  .NavBar {
+    background:url(../images/bg_top.jpg) top center no-repeat #1e2023;
+  }
+  .Container_NavBar {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100% !important;
+    margin:0 auto;
+    height: 80px;
+	  width:1000px;
+  }
+  .menutest
+  {
+    float: right;
+    padding-top: 8px;
+    padding-left: 500px;
+    width: 640px;
+  }
+  .body1 {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .main {
+      display: block;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      width: 100% !important;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 8px;
+    }
+    .wrapper {
+      margin-top: 80px;
+      padding: 10px;
+    }
+</style>
+</head>
+<body>
+
+  <!-- <div class="body1">
+    <div class="main">
+          <h1 style="margin-top: 3px;
+          font-size: 30px;
+          width: 600px;
+          position: absolute;
+          left: 50px;"><a href="index.html" id=""></a>fastest International shippment</h1>
+          <div class="right">
+            <nav>
+              <ul id="top_nav">
+                <li><a href="index.html"><img src="images/img1.gif" alt=""></a></li>
+                <li><a href="ClientsContact.html"><img src="images/img2.gif" alt=""></a></li>
+                <li class="bg_none"><a href="AboutUs.html"><img src="images/img3.gif" alt=""></a></li>
+              </ul>
+            </nav>
+            <nav>
+              <ul id="menu">
+                <li id="menu_active"><a href="index.html">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="HowToWork.html">How It's Work</a></li>
+                <li><a href="https://www.flightaware.com/">Track Your Request</a></li>
+                <li><a href="ClientsContact.html?Type=User">Help</a></li>
+                <li><a href="login.php">login</a></li>
+              </ul>
+            </nav>
+          </div>
+    </div>
+</div> -->
+  
+<!-- <div class="test">
+  <div class="maintest">
+    <header>
+      <div >
+        <h1 style="    margin-top: 35px;
+        font-size: 30px;
+        width: 500px;
+        position: absolute;
+        left: 50px;"><a href="index.html" id=""></a>fastest International shippment</h1>  
+              <div class="right">
+          <nav>
+            <ul id="top_nav">
+              <li><a href="index.html"><img src="images/img1.gif" alt=""></a></li>
+              <li><a href="ClientsContact.html"><img src="images/img2.gif" alt=""></a></li>
+              <li class="bg_none"><a href="AboutUs.html"><img src="images/img3.gif" alt=""></a></li>
+            </ul>
+          </nav>
+          <nav>
+            <ul id="menu">
+              <li id="menu_active"><a href="index.html">Home</a></li>
+              <li><a href="AboutUs.html">About Us</a></li>
+              <li><a href="HowToWork.html">How It's Work</a></li>
+              <li><a href="https://www.flightaware.com/">Track Your Request</a></li>
+              <li><a href="ClientsContact.html?Type=User">Help</a></li>
+              <li><a href="login.html">login</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+  </div>
+</div> -->
+
+
+<!-- partial:index.partial.html -->
+
+<div class="window" style="margin-top: 200px;">
+  <h1>Clients Contacts Chat</h1>
+  <aside class="conv-list-view">
+    <header class="conv-list-view__header">
+      <div class="cf">
+        <ul class="close-button-list">
+          <li></li><li></li><li></li>
+        </ul>
+        <ul class="function-list">
+          <li class="icon-lupe"></li>
+        </ul>
+      </div>
+    </header>
+    <ul class="conv-list">
+      <li>
+        <div class="status">
+          <i class="status__indicator--unread-message"></i>    
+          <figure class="status__avatar">
+            <img src="./images/chat_icon.jpeg"/>
+          </figure>
+          <div class="meta">
+            <div class="meta__name_Admin">Admin</div>
+          </div>
+        </div>
+      </li>      
+      <li class="selected">
+        <div class="status">
+          <i class="status__indicator--replied-message"></i>    
+          <figure class="status__avatar">
+            <img src="./images/chat_icon.jpeg"/>
+          </figure>
+          <div class="meta">
+            <div class="meta__name_Sender">Sender</div>
+          </div>
+        </div>
+      </li>    
+      
+      <li class="selected">
+        <div class="status">
+          <i class="status__indicator--replied-message"></i>    
+          <figure class="status__avatar">
+            <img src="./images/chat_icon.jpeg"/>
+          </figure>
+          <div class="meta">
+            <div class="meta__name_Traveller">Traveller </div>
+          </div>
+        </div>
+      </li>    
+
+
+      <li>
+        <!-- <div class="status">
+          <i class="status__indicator--read-message"></i>    
+          <figure class="status__avatar">
+            <img src="http://0.gravatar.com/avatar/729edf889ced7863dedba95452272bca?size=80"/>
+          </figure>
+          <div class="meta">
+            <div class="meta__name">HugoGiraudel</div>
+            <div class="meta__sub--dark">Ok!</div>
+          </div>
+        </div> -->
+      </li>
+    </ul>
+  </aside>
+  <section class="chat-view">
+    <header class="chat-view__header">
+      <div class="cf">
+        <div class="status">
+          <i class="status__indicator--online"></i>  
+          <div class="meta">
+            <div class="meta__name_Chat">Sender</div>
+            <div class="meta__sub--light"></div>
+          </div>
+        </div>
+        <ul class="function-list">
+          <li class="icon-cloud"></li>
+          <li class="icon-clock"></li>
+          <li class="icon-dots"></li>
+        </ul>
+      </div>
+    </header>
+    <section class="message-view">
+      <div class="message--send">
+        <div class="message__bubble--send">
+          Hi !
+        </div>
+        <figure class="message__avatar">
+          <img src="./images/chat_icon.jpeg"/>
+        </figure>
+      </div>
+      <div class="cf"></div>
+      
+      <div class="message">
+        <figure class="message__avatar">
+          <img src="./images/chat_icon.jpeg"/>
+        </figure>
+        <div class="message__bubble">
+          Hi
+        </div>
+      </div>      <div class="cf"></div>
+      
+      <div class="message--send">
+        <div class="message__bubble--send">
+           looks great!
+        </div>
+        <figure class="message__avatar">
+          <img src="./images/chat_icon.jpeg"/>
+        </figure>
+      </div>
+    </section>
+    <footer class="chat-view__input">
+      <div class="input"><input /><span class="input__emoticon"></span></div>
+      <div class="status">
+        <figure class="status__avatar--small">
+          <img src="./images/chat_icon.jpeg"/>
+        </figure>
+      </div>
+      
+      <div class="status" style="    position: absolute;
+      bottom: 54px;
+      right: 10px;">
+        <figure class="status__avatar--small">
+          <img src="./images/add.png"/>
+        </figure>
+      </div>
+      
+
+
+    </footer>
+  </section>
+</div>
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</body>
+</html>
+<script>
+  function getQueryParams() {
+      const params = {};
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      for (const [key, value] of urlParams.entries()) {
+          params[key] = value;
+      }
+      return params;
+  }
+
+  const queryParams = getQueryParams();
+
+  const userType = queryParams.Type;
+
+  const adminMetaName = document.querySelector('.meta__name_Admin');
+  const senderMetaName = document.querySelector('.meta__name_Sender');
+  const travellerMetaName = document.querySelector('.meta__name_Traveller');
+  const ChatMetaName = document.querySelector('.meta__name_Chat');
+
+  const selectedListItems = document.querySelectorAll('li.selected');
+
+  const messageStatus = queryParams.Status;
+
+  if (userType === 'User') {
+      if (adminMetaName) adminMetaName.textContent = 'Admin';
+      if (senderMetaName) senderMetaName.textContent = 'User';
+      if (ChatMetaName) ChatMetaName.textContent = 'Admin';
+      selectedListItems.forEach(item => {
+        const travellerMeta = item.querySelector('.meta__name_Traveller');
+        if (travellerMeta) {
+            item.style.display = 'none'; 
+        }
+    });
+  } else if (userType === 'Admin') {
+      if (adminMetaName) adminMetaName.textContent = 'Admin';
+      if (senderMetaName) senderMetaName.textContent = 'Sender';
+      if (ChatMetaName) ChatMetaName.textContent = 'Admin';
+      selectedListItems.forEach(item => {
+        const travellerMeta = item.querySelector('.meta__name_Traveller');
+        if (travellerMeta) {
+            item.style.display = 'none'; 
+        }
+    });
+  } else if (userType === 'AdminAsSender') {
+      if (adminMetaName) adminMetaName.textContent = 'Admin';
+      if (senderMetaName) senderMetaName.textContent = 'Sender';
+      if (ChatMetaName) ChatMetaName.textContent = 'Admin';
+      selectedListItems.forEach(item => {
+        const travellerMeta = item.querySelector('.meta__name_Traveller');
+        if (travellerMeta) {
+            item.style.display = 'none'; 
+        }
+    });
+  } else if (userType === 'AdminAsTraveller') {
+      if (adminMetaName) adminMetaName.textContent = 'Admin';
+      if (travellerMetaName) travellerMetaName.textContent = 'Traveller';
+      if (ChatMetaName) ChatMetaName.textContent = 'Admin';
+      selectedListItems.forEach(item => {
+        const SenderMeta = item.querySelector('.meta__name_Sender');
+        if (SenderMeta) {
+            item.style.display = 'none'; 
+        }
+    });
+  } else if (userType === 'Sender') {
+      if (adminMetaName) adminMetaName.textContent = 'Admin';
+      if (senderMetaName) senderMetaName.textContent = 'Sender';
+      if (travellerMetaName) travellerMetaName.textContent = 'Traveller';
+      if (ChatMetaName) ChatMetaName.textContent = 'Traveller';
+  } else if (userType === 'Traveller') {
+      if (adminMetaName) adminMetaName.textContent = 'Admin';
+      if (senderMetaName) senderMetaName.textContent = 'Sender';
+      if (travellerMetaName) travellerMetaName.textContent = 'Traveller';
+      if (ChatMetaName) ChatMetaName.textContent = 'Sender';
+  } else {
+      if (adminMetaName) adminMetaName.textContent = 'Unknown User - Chat';
+      if (senderMetaName) senderMetaName.textContent = 'Unknown User - Chat';
+      if (travellerMetaName) travellerMetaName.textContent = 'Unknown User - Chat';
+  }
+
+  if (userType) {
+      document.title = `Client Chat - ${userType}`;
+  }
+</script>

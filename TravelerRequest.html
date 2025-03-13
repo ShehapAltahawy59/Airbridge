@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sender Request Details</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #696969;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #1d1e22;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffc107 !important;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+    }
+    .nav-link:hover {
+      color: #ffc107 !important;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+    .wrapper-customized {
+      margin-top: 100px;
+      padding: 20px;
+    }
+    .form.signup {
+      background-color: #1d1e22;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .form.signup header {
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffc107;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form.signup input, .form.signup textarea {
+      background-color: #2a2b2f;
+      border: 1px solid #444;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .form.signup input:disabled, .form.signup textarea:disabled {
+      background-color: #444;
+      color: #aaa;
+    }
+    .form.signup .btn {
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      width: 100%;
+    }
+    .form.signup .btn-approve {
+      background-color: darkseagreen;
+      color: #fff;
+    }
+    .form.signup .btn-reject {
+      background-color: darkred;
+      color: #fff;
+    }
+    .form.signup .btn-approve:hover {
+      background-color: #8fbc8f;
+    }
+    .form.signup .btn-reject:hover {
+      background-color: #8b0000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Fastest International Shipment</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="AboutUs.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="HowToWork.html">How It Works</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.flightaware.com/">Track Your Request</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ClientsContact.html?Type=User">Help</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.php">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sender Request Form -->
+  <section class="wrapper-customized">
+    <div class="form signup">
+      <header>Sender Request Details</header>
+      <form action="#">
+        <div class="row">
+          <div class="col-md-12">
+            <label style="color: #ffc107; font-weight: bold; font-size: large;">Item Type</label>
+            <input type="text" placeholder="Item Type" disabled required />
+          </div>
+          <div class="col-md-12">
+            <label style="color: #ffc107; font-weight: bold; font-size: large;">Item Description</label>
+            <textarea placeholder="Item Description" disabled required style="height: 100px;"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label style="color: #ffc107; font-weight: bold; font-size: large;">Item Weight</label>
+            <input type="text" placeholder="Item Weight" disabled required />
+          </div>
+          <div class="col-md-6">
+            <label style="color: #ffc107; font-weight: bold; font-size: large;">Shipment Cost</label>
+            <input type="text" placeholder="Shipment Cost" disabled required />
+          </div>
+          <div class="col-md-12">
+            <label style="color: #ffc107; font-weight: bold; font-size: large;">Total Price</label>
+            <input type="text" placeholder="Total Price" disabled required />
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-approve">Approve</button>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-reject">Reject</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

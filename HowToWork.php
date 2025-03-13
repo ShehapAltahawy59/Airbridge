@@ -1,0 +1,421 @@
+<?php
+session_start();
+require_once 'DB.php';  // Assume DB.php contains your database connection
+
+// Ensure you are using prepared statements to prevent SQL injection
+$stmt = $pdo->prepare("SELECT * FROM users WHERE UserID  = :user_id");
+
+// Bind the parameter securely
+$stmt->bindParam(':user_id', $_SESSION['UserID'], PDO::PARAM_INT);
+
+// Execute the statement
+$stmt->execute();
+
+// Fetch the notifications
+$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>How It Works - Fastest International Shipment
+</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #1d1e22;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffc107 !important;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #ffc107 !important;
+    }
+
+    /* Custom white toggler icon */
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .timeline-section {
+      position: relative;
+      padding: 60px 0;
+      background-color: #1d1e22;
+      pointer-events: auto;
+      overflow: visible;
+    }
+
+    .section-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .timeline-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .vertical-scrollable-timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .vertical-scrollable-timeline li {
+      position: relative;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .vertical-scrollable-timeline h4 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffc107;
+    }
+
+    .vertical-scrollable-timeline p {
+      font-size: 16px;
+      margin: 10px 0 0;
+      color: #fff;
+    }
+
+    .icon-holder {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: #ffc107;
+    }
+
+    .custom-btn {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer; /* Ensure the cursor changes to a pointer */
+  text-decoration: none; /* Remove underline */
+  z-index: 10;
+  position: relative;
+  pointer-events: auto;
+}
+
+.custom-btn:hover {
+  background-color: #e0a800;
+}
+
+.custom-border-btn {
+  border: 2px solid #ffc107;
+  background-color: transparent;
+  color: #ffc107;
+}
+
+.custom-border-btn:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+    .hero-section {
+      background: url('./images/shipment.avif') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-section h1 {
+      font-size: 48px;
+      font-weight: bold;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.php">Fastest International Shipment
+</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+        <?php if (isset($_SESSION['UserID'])): ?>
+                <?php if ($user[0]['user_type'] == 'requester'): ?>
+                    <a class="nav-link" href="start_page.php">Dashboard</a>
+                <?php elseif($user[0]['user_type'] == 'traveler'): ?>
+                        <a class="nav-link" href="start_page.php">Dashboard</a>
+                <?php elseif($user[0]['user_type'] == 'admin'): ?>
+                        <a class="nav-link" href="Admin.php">Dashboard</a>
+                <?php endif; ?>
+            <?php endif; ?>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="AboutUs.php">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="HowToWork.php">How It Works</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.flightaware.com/">Track Request</a></li>
+          <li class="nav-item"><a class="nav-link" href="ClientsContact.php">Help</a></li>
+          <li class="nav-item">
+            <?php if (isset($_SESSION['UserID'])): ?>
+                <a class="nav-link" href="logout.php">Logout</a>
+            <?php else: ?>
+                <a class="nav-link" href="login.php">Login</a>
+            <?php endif; ?>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1>How It Works</h1>
+  </div>
+
+  <!-- Timeline Section for Requester -->
+  <section class="timeline-section section-padding" id="instructions_Requester">
+    <div class="section-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="text-white mb-4">📦 Instructions for the Requester</h2>
+        </div>
+        <div class="col-lg-10 col-12 mx-auto">
+          <div class="timeline-container">
+            <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+              <div class="list-progress">
+                <div class="inner"></div>
+              </div>
+              <li>
+                <h4 class="text-white mb-3">1. Create an Account</h4>
+                <p class="text-white">
+                  Visit the Fastest International Shipment
+ platform and click on "Sign Up". Fill in the registration form with your full name, email, password, and contact details. Verify your account via the confirmation email.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-person"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">2. Log In</h4>
+                <p class="text-white">
+                  Access the platform using your registered email and password. Navigate to the dashboard for Requester-specific functionalities.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-box-arrow-in-right"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">3. Post a Delivery Request</h4>
+                <p class="text-white">
+                  Go to the "New Request" section in your dashboard. Choose the item type (e.g., Zamzam Water, Dates, Perfume, etc.). Ensure your item is a popular and known brand to avoid confusion.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-plus-circle"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">4. Confirm and Make Payment</h4>
+                <p class="text-white">
+                  Proceed with the payment securely through the system. The payment will be held by Fastest International Shipment
+ until the delivery is completed or cancelled. Submit your request, which will appear on travellers’ dashboards.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-credit-card"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">5. Get a Tracking Tool</h4>
+                <p class="text-white">
+                  Ask the traveler to send the flight number and track your parcel.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-geo-alt"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">6. Track Your Request</h4>
+                <p class="text-white">
+                  View the status of your posted delivery requests under the "notifications" section. You will receive notifications when a traveler views, accepts, or rejects your request.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-bell"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">7. Monitor the Delivery</h4>
+                <p class="text-white">
+                  Use real-time tracking to monitor the progress of your shipment via "Track My Request".
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-eye"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">8. Complete the Delivery</h4>
+                <p class="text-white">
+                  You will receive a 4-digit code. Do not share it with anyone until the item arrives. Give the code to the traveler for verification. The payment will then be released to the traveler's wallet account.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-check-circle"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">9. Provide Feedback</h4>
+                <p class="text-white">
+                  Rate your experience with the admin and provide feedback to help improve the platform.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-chat-left-text"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 text-center mt-5">
+          <p class="text-white">
+            Join thousands of Requesters who are delivering their shipments quickly and reliably.
+            <a href="login.php" class="btn custom-btn custom-border-btn ms-3">Start Now</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section for Traveller -->
+  <section class="timeline-section section-padding" id="instructions_traveller">
+    <div class="section-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="text-white mb-4">🚀 Instructions for the Traveller</h2>
+        </div>
+        <div class="col-lg-10 col-12 mx-auto">
+          <div class="timeline-container">
+            <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+              <div class="list-progress">
+                <div class="inner"></div>
+              </div>
+              <li>
+                <h4 class="text-white mb-3">1. Create an Account</h4>
+                <p class="text-white">
+                  Visit the Fastest International Shipment
+ platform and click on "Sign Up". Complete the registration form with your details and verify your account via the email confirmation link.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-person"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">2. Complete Your Profile</h4>
+                <p class="text-white">
+                  Add your personal details, including travel preferences, schedule, and available weight for carrying shipments.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-pencil-square"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">3. Browse Shipment Requests</h4>
+                <p class="text-white">
+                  Access the list of shipment requests and select the ones that align with your travel plans.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-search"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">4. Accept a Shipment</h4>
+                <p class="text-white">
+                  Review the shipment details, communicate with the Requester, and confirm your acceptance of the shipment.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-check-circle"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">5. Deliver the Shipment</h4>
+                <p class="text-white">
+                  Carry the shipment securely during your travel and deliver it to the designated recipient upon arrival.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-box-arrow-in-right"></i>
+                </div>
+              </li>
+              <li>
+                <h4 class="text-white mb-3">6. Get Paid</h4>
+                <p class="text-white">
+                  Receive your payment securely through the Fastest International Shipment
+ platform after successfully completing the delivery.
+                </p>
+                <div class="icon-holder">
+                  <i class="bi-currency-exchange"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 text-center mt-5">
+          <p class="text-white">
+            Join thousands of travellers who are earning extra income while helping Requesters deliver their shipments quickly and reliably.
+            <a href="login.php" class="btn custom-btn custom-border-btn ms-3">Start Now</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
